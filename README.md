@@ -22,7 +22,7 @@ Please run ./Client to active a simple client
 
 You can also run your own client as long as it matches the IP/PORT written in "Server.c"
 
-#Extras
+# Extras
 You will also find an "Original Server" file.
 
 This file shows a way to make a multi-client server using fork().
