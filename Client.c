@@ -14,7 +14,7 @@ int main() {
     int sockD = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in servAddr;
     servAddr.sin_family = AF_INET;
-    servAddr.sin_port= htons(9001); // use some unused port number
+    servAddr.sin_port= htons(3490); // use some unused port number
     servAddr.sin_addr.s_addr = INADDR_ANY;
 
     int connectStatus = connect(sockD, (struct sockaddr*)&servAddr,sizeof(servAddr));
@@ -23,11 +23,11 @@ int main() {
         printf("Error...\n");
         return;
     }
-    //Redirecting the STDOUT to the socket
+    //Accepting data from the server
     char serverData[255];
-    recv(sockD, serverData, sizeof(serverData), 0);
-    printf("%s\n",serverData);
-    recv(sockD, serverData, sizeof(serverData), 0);
+    int numbytes;
+    numbytes = recv(sockD, serverData, sizeof(serverData), 0);
+    serverData[numbytes] = '\0';
     printf("%s\n",serverData);
     return 0;
 }

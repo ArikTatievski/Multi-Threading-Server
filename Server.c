@@ -7,15 +7,16 @@
 #include <pthread.h>
 
 #define TRUE 1
-
+/*
+ * This is the function we are giving to the new thread
+ */
 void *newFunc(void *sock){
     int sockId = *((int*)sock);
     free(sock);
-    send(sockId, "Hello from server", 17, 0);
-    sleep(10);
-    send(sockId, "Waited 10 seconds", 17, 0);
+    send(sockId, "Hello, world!", 13, 0);
     close(sockId);
 }
+
 int main(int argc, char const* argv[]){
     // create server socket similar to what was done in
     // client program
@@ -24,7 +25,7 @@ int main(int argc, char const* argv[]){
     struct sockaddr_in servAddr;
 
     servAddr.sin_family = AF_INET;
-    servAddr.sin_port = htons(9001);
+    servAddr.sin_port = htons(3490);
     servAddr.sin_addr.s_addr = INADDR_ANY;
 
     // bind socket to the specified IP and port
